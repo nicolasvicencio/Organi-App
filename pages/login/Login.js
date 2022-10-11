@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Link from 'next/link'
 import Spinner from "../../components/Spinner/Spinner";
 import { useRouter } from "next/router";
-import { useAuth } from "../../context/AuthContext";
 import { supabase } from "../../supabase/connection";
 import { FcGoogle } from "react-icons/fc";
 import { useUsers } from "../../context/UserContext";
@@ -14,14 +13,18 @@ export default function Login() {
 	const [isLoaded, setIsLoaded] = useState(true)
 	const router = useRouter()
 
-	const handleClick = () => {
+	const handleClick = (e) => {
+		e.preventDefault()
 		setIsLoaded(false)
 		supabase.auth.signInWithPassword({ email: email, password: pass })
 			.then(({ data, error }) => {
-				if (error) console.log(error)
+				if (error) {
+					console.log(error)
+					return setIsLoaded(true)
+				}
 				if (data) {
 					getUserData()
-					if(userData)
+					if (userData)
 						!userData.first_name ? router.push('/login/first') : router.push('/inicio')
 				}
 			})
@@ -112,7 +115,7 @@ export default function Login() {
 
 									<div
 										className="focus:ring-primary-300 w-full cursor-pointer rounded-lg bg-gray-800 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4"
-										onClick={handleClick}
+										onClick={e => handleClick(e)}
 									>
 										Ingresar
 									</div>

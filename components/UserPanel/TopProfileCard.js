@@ -15,7 +15,7 @@ export default function TopProfileCard() {
 	};
 
 	return (
-		<div className="flex items-center gap-3 py-2 pr-5">
+		<div className="flex items-center gap-3 py-0 pr-5">
 			<Link href="/perfil" className="font-bold text-sky-400 hover:text-sky-600">
 				<img
 					src="https://placeimg.com/30/30/people"

@@ -6,7 +6,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <AuthContextProvider>
       <UserContextProvider>
-        <Component {...pageProps} />
+        <div className='overflow-hidden'>
+          <Component {...pageProps} />
+        </div>
       </UserContextProvider>
     </AuthContextProvider>
   )

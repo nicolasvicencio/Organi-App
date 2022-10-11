@@ -1,54 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { useUsers } from '../../context/UserContext'
-import { supabase } from '../../supabase/connection'
 import DrawerPanelItems from './DrawerPanelItems'
-import { types } from './IconsDrawerItem'
+import { AiOutlinePlusCircle } from 'react-icons/ai'
 
 export default function DrawerPanel() {
-	const { userData } = useUsers()
-	const [list, setList] = useState()
-	
-	const getListCollections = async() => {
-		if(userData){
-			const {data, error} = await supabase.from('components_user').select().eq('user_id', userData.id)
-			if(error) console.log(error)
-			if(data){
-				console.log(data)
-				// return data[0].components_list
-			}
-		}
-	}
-
-	const getItemCollections = async(array) => {
-		// if(userData){
-		// 	const {data, error} = await supabase.from('components').select().in('id', array)
-		// 	if(error) return error
-		// 	if(data) return data
-		// }
-		
-	}
-
-
-	useEffect(() => {
-		if(userData)
-		getListCollections().then((array) => {
-			getItemCollections(array).then(data => {
-				setList(data)
-			})
-		})
-	}, [])
-
 
 	return (
-		<div className=" min-h-screen bg-gray-200 shadow-2xl pt-10 basis-2/12 ">
-			<div className="flex flex-col justify-between">
-				{!list 
-				? null 
-				: <ul>
-					{/* {list.map(component => <li><DrawerPanelItems key={component.id} name={component.name} /></li>)}			 */}
-				</ul>}
-				
-			</div>
+		<div className=" min-h-screen bg-gray-200 shadow-2xl basis-2/12 z-50 ">	
+			<h3 className="flex items-center gap-4 rounded-br-lg bg-gray-800  p-4 py-7 text-3xl font-bold text-white">
+				OrganiApp
+				<AiOutlinePlusCircle size={30} className='pt-1' />
+			</h3>
+				<nav>
+					<ul>
+				 <DrawerPanelItems/>
+					</ul>
+				</nav>		
 		</div>
 	)
 }
