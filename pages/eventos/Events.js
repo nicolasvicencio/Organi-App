@@ -1,45 +1,49 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import EventItem from "./EventItem";
 import Spinner from "../../components/Spinner/Spinner";
 import { supabase } from "../../supabase/connection";
 import { useUsers } from "../../context/UserContext";
 import UserPanels from "../../components/UserPanel/UserPanels";
+import Link from "next/link";
 
 export default function Events() {
 	const [events, setEvents] = useState();
+	const [error, setError] = useState()
 	const { userData } = useUsers()
 
-	const getEvents = async () => {
-		if(userData){
+	const getEvents = useMemo(async () => {
+		if (userData) {
 			const { data, error } = await supabase.from('event').select().eq('id_user', userData.id)
-			if (error) console.log(error)
+			if (error) return setError(error)
 			if (data) {
-				console.log(data)
-				console.log(userData.id)
 				setEvents(data)
 			}
 		}
-	}
+	}, [userData])
 
 	useEffect(() => {
-		getEvents()
+		getEvents
 	}, [])
-
-
 	return (
-
 		<UserPanels>
 			<div className="background">
-
 				<h2 className="title">Eventos</h2>
-				<p className="subTitle">Proximos eventos</p>
-				{!events ? (
-					<Spinner />
-				) : (
-					events.length === 0 
+				<div className="cardBg">
+					{error ? <Error message={error} /> : null}
+					<div class="flex gap-3 justify-start p-6">
+						<Link href={'/eventos/crear'}>
+							<a className="button-light p-2">Crear Evento</a>
+						</Link>
+					</div>
+
+					{!events ? (
+						<Spinner />
+					) : (
+						events.length === 0
 							? <div class="grid place-content-center h-40"><p className="text-xl text-gray-600">Aun no hay eventos!</p></div>
-					: events.map((event) => <EventItem key={event.id} data={event} />)
-				)}
+							: events.map((event) => <EventItem key={event.id} data={event} />)
+					)}
+				</div>
 			</div>
 		</UserPanels>
 	);

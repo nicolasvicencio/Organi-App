@@ -1,14 +1,17 @@
+import { useEffect } from 'react'
+import RequireAuth from '../components/RequireAuth/RequireAuth'
 import AuthContextProvider from '../context/AuthContext'
 import UserContextProvider from '../context/UserContext'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
+
   return (
     <AuthContextProvider>
       <UserContextProvider>
-        <div className='overflow-hidden'>
+        <RequireAuth>
           <Component {...pageProps} />
-        </div>
+        </RequireAuth>
       </UserContextProvider>
     </AuthContextProvider>
   )

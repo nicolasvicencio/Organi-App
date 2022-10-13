@@ -1,7 +1,6 @@
 import React from 'react'
 import TopProfileCard from './TopProfileCard';
-import Link from 'next/link'
-import { AiOutlinePlusCircle } from 'react-icons/ai'
+
 
 import TopNotifications from './TopNotifications';
 

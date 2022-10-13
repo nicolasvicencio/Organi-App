@@ -19,11 +19,10 @@ export default function Home() {
     !session ? router.push('/login') : router.push('/inicio')
     getUserData()
   },[session])
+  
   return (
-    <RequireAuth>
       <main className='relative'>
         <Login />
       </main>
-    </RequireAuth>
   )
 }

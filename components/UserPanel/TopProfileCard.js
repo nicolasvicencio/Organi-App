@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from 'next/link'
 import { useUsers } from "../../context/UserContext";
 import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
 
 export default function TopProfileCard() {
-	const { userData, setUserData} = useUsers()
+	const { userData} = useUsers()
 	const { signOutUser } = useAuth()
 	const router = useRouter()
 	
-	const handleLogOut = () => {
+	const handleLogOut =() => {
 		signOutUser()
 		router.push('/login')
-	};
-
+	}
+	
 	return (
 		<div className="flex items-center gap-3 py-0 pr-5">
 			<Link href="/perfil" className="font-bold text-sky-400 hover:text-sky-600">

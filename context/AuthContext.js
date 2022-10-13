@@ -1,16 +1,15 @@
-import React, {createContext, useState, useContext, useEffect} from 'react'
+import React, {createContext, useState, useContext, useEffect, useMemo} from 'react'
 import { supabase } from '../supabase/connection'
-import { useUsers } from './UserContext'
+
 
 export const AuthContext = createContext()
 
 const AuthContextProvider = ({children}) => {
-	const [logInData, setLogInData] = useState()
 	const [session, setSession] = useState()
 
 	const getSession = async() => {
 		const {data, error} = await supabase.auth.getSession()
-		if(error) console.log(error)
+		if(error) return console.log(error)
 		if(data.session){
 			setSession(data.session.access_token)
 		}
@@ -23,14 +22,18 @@ const AuthContextProvider = ({children}) => {
 
 	useEffect(() => {
 		getSession()
-	}, [])
+		console.log('render auth context')
+	}, [session])
+
+	const values = useMemo(() => ({
+		session,
+		setSession,
+		signOutUser,
+		getSession
+	}),[session])
 
 	return (
-		<AuthContext.Provider value={{
-			session,
-			signOutUser,
-			getSession
-		}}>
+		<AuthContext.Provider value={values}>
 			{children}
 		</AuthContext.Provider>
 	)

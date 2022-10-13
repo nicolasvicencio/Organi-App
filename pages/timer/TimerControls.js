@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import NumberSelector from './NumberSelector'
 import ColorSelector from './ColorSelector'
 
-export default function TimerControls({ setData , data}) {
-	const [focus, setFocus] = useState(data.focus)
-	const [rest, setRest] = useState(data.rest)
-	const [sessions, setSessions] = useState(data.sessions)
-	const [restSessions, setRestSessions] = useState(data.restSessions)
-	const [tag, setTag] = useState(data.tag)
-	const [colorTag, setColorTag] = useState(data.colorTag)
+ function TimerControls({ handleSetData}) {
+	const [focus, setFocus] = useState(30)
+	const [rest, setRest] = useState(5)
+	const [sessions, setSessions] = useState(4)
+	const [restSessions, setRestSessions] = useState(15)
+	const [tag, setTag] = useState('Sin Etiqueta')
+	const [colorTag, setColorTag] = useState('#4caf50')
 
 useEffect(() => {
-	setData({
+	handleSetData({
 		focus,
 		rest,
 		sessions,
@@ -26,26 +26,28 @@ useEffect(() => {
 			<div className='flex gap-6'>
 				<div>
 					<p className='timerText'>Enfoque</p>
-					<NumberSelector defaultValue={focus} handler={x => setFocus(x)} />
+					<NumberSelector defaultValue={focus} handler={setFocus} gap={5} />
 				</div>
 				<div>
 					<p className='timerText'>Descanso</p>
-					<NumberSelector defaultValue={rest} handler={x => setRest(x)} />
+					<NumberSelector defaultValue={rest} handler={setRest} gap={1} />
 				</div>
 			</div>
 			<div className='flex gap-6'>
 				<div>
 					<p className='timerText'>Sesiones</p>
-					<NumberSelector defaultValue={sessions} handler={x => setSessions(x)} />
+					<NumberSelector defaultValue={sessions} handler={setSessions} gap={1} />
 				</div>
 				<div>
 					<p className='timerText'>Descanso sesiones</p>
-					<NumberSelector defaultValue={restSessions} handler={x => setRestSessions(x)} />
+					<NumberSelector defaultValue={restSessions} handler={setRestSessions} gap={5} />
 				</div>
 			</div>
 			<div>
-				<ColorSelector setTag={x => setTag(x)} setColorTag={x => setColorTag(x)} />
+				<ColorSelector setTag={setTag} setColorTag={setColorTag} />
 			</div>
 		</div>
 	)
 }
+
+export default memo(TimerControls)

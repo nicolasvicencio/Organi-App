@@ -5,9 +5,12 @@ import { useRouter } from "next/router";
 import { supabase } from "../../supabase/connection";
 import { FcGoogle } from "react-icons/fc";
 import { useUsers } from "../../context/UserContext";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Login() {
-	const { getUserData, userData } = useUsers()
+	const { userData} = useUsers()
+	const {setSession} = useAuth()
+
 	const [email, setEmail] = useState();
 	const [pass, setPass] = useState();
 	const [isLoaded, setIsLoaded] = useState(true)
@@ -23,9 +26,11 @@ export default function Login() {
 					return setIsLoaded(true)
 				}
 				if (data) {
-					getUserData()
-					if (userData)
+					setSession(data.session.access_token)
+					if (userData) {
+						setIsLoaded(false)
 						!userData.first_name ? router.push('/login/first') : router.push('/inicio')
+					}
 				}
 			})
 	};

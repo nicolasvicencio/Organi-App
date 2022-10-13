@@ -3,19 +3,20 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { MdAlarmAdd } from "react-icons/md";
 import { BsTrash } from "react-icons/bs";
 import Modal from "../../components/Modal/Modal";
-import { useRouter } from "next/router";
+
 
 export default function EventItem({ data }) {
-  const router = useRouter()
   const [modalOpen, setModalOpen] = useState(false);
   const formatDate = (date) => new Date(date).toLocaleDateString("es-ES");
   const priority = "★".repeat(data.id_priority).padEnd(3, "☆");
 
+
+
   return (
     <div className="z-40 my-4 flex justify-between bg-white py-7 shadow-md">
       <div className="pl-4">
-        <p className=" font-light">{data.name}</p>
-        <button className="" onClick={() => setModalOpen(true)}>
+        <p className="font-bold ">{data.name}</p>
+        <button className="hover:text-gray-600 font-light" onClick={() => setModalOpen(true)}>
           Ver detalles
         </button>
       </div>

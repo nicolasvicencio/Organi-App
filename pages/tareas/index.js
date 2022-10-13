@@ -1,7 +1,12 @@
 import React from 'react'
-
+import UserPanels from '../../components/UserPanel/UserPanels'
 export default function index() {
 	return (
-		<div>index</div>
+		<UserPanels>
+
+			<div>
+
+			</div>
+		</UserPanels>
 	)
 }

@@ -1,23 +1,25 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import UserPanels from '../../components/UserPanel/UserPanels'
-import { TimerFocus, TimerInactive, TimerRest } from './TimerDisplay'
+import TimerFocus from './TimerDisplay'
 import TimerControls from './TimerControls'
 
 
 export default function Timer() {
+	const [showTimer, setShowTimer] = useState(false)
 	const [data, setData] = useState({
 		focus: 30,
 		rest: 5,
 		sessions: 4,
 		restSessions: 15,
-		tag: 'Default',
-		colorTag: '#1f2937' 
-	})
-	const [isStart, setIsStart] = useState(false)
-	const [isRest, setIsRest] = useState(false)
+		tag: 'Sin Etiqueta',
+		colorTag: '#4caf50'
+	}
+	)
+	const handleSetData = (data) => setData(data)
 
-	const startTimer = () => setIsStart(!isStart)
-	console.log('render!')
+	useEffect(() => {
+		console.log('changes')
+	})
 	return (
 		<UserPanels>
 			<div className="background">
@@ -25,18 +27,17 @@ export default function Timer() {
 				<div className=" rounded-xl bg-white p-7">
 					{/* <p>Configura tu timer</p> */}
 					<article className='flex justify-between'>
-						<TimerControls setData={setData} data={data}/>
+						<TimerControls handleSetData={handleSetData} />
 						<div className='flex flex-col items-center gap-6 p-3'>
 							<div>
-								{
-									isStart
-									? <TimerFocus focus={data.focus} session={data.sessions} restSession={data.restSessions} color={data.colorTag} isStart={isStart} setIsStart={setIsStart}/>
-										:<TimerInactive color={data.color} focus={data.focus} />
+								{showTimer
+									? <TimerFocus timerData={data} />
+									: <div className='flex flex-col items-center text-center justify-center mt-20'>
+										<p>Presiona el boton iniciar para activar el temporizador!</p>
+										<button onClick={() => setShowTimer(true)} className='p-2 bg-zinc-600 text-white rounded-md my-4'>Iniciar</button>
+									</div>
 								}
-							
 							</div>
-							 <p className={`font-bold text-xl bg-[${data.colorTag}]`}>{data.tag === 'Default' ? 'Etiqueta' : data.tag}</p> 
-							<button onClick={startTimer} className='button'>{isStart ? 'Terminar' : 'Comenzar'}</button>
 						</div>
 						<div>
 							<p></p>

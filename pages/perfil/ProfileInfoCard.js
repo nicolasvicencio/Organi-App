@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useUsers } from "../../context/UserContext";
 import {supabase} from '../../supabase/connection'
-import Button from '../../components/Button/Button'
+import Spinner from "../../components/Spinner/Spinner";
 
 
 export default function ProfileInfoCard() {
@@ -14,10 +14,19 @@ export default function ProfileInfoCard() {
 			.from("users")
 			.update({ description: description })
 			.eq("id", userData.id);
+			if(error) return console.log(error)
 		setIsEdit(false);
+
 	};
 
 	const handleEdit = () => setIsEdit(true);
+
+	if(!userData) return (
+		<div className="grid place-content-center w-full h-full">
+			<Spinner />
+		</div>
+	)
+	
 
 	return (
 		<div className="flex w-2/5 flex-col  items-center justify-center rounded-xl bg-white p-14 shadow-xl">
@@ -47,17 +56,15 @@ export default function ProfileInfoCard() {
 						></textarea>
 					)}
 					{isEdit ? (
-						<Button
-							text={"Actualizar"}
-							handler={handleUpdate}
+						<button
+							onClick={handleUpdate}
 							className="button-light mt-3"
-						/>
+						>Actualizar</button>
 					) : (
-						<Button
+						<button
 							className="button-light mt-3"
-							text={"Editar"}
-							handler={handleEdit}
-						/>
+							onClick={handleEdit}
+						>Editar</button>
 					)}
 				</div>
 			</div>

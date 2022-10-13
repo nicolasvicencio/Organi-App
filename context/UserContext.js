@@ -12,9 +12,11 @@ const UserContextProvider = ({ children }) => {
 	const getUserData = async () => {
 		if (session) {
 			const { data: { user } } = await supabase.auth.getUser(session)
-			const { data, error } = await supabase.from('users').select().eq('id', user.id)
-			error && console.log(error)
-			data && setUserData(data[0])
+			if(user) {
+				const { data, error } = await supabase.from('users').select().eq('id', user.id)
+				if(error) return console.log(error)
+				if(data)  setUserData(data[0])
+			}
 		}
 	}
 
@@ -31,16 +33,18 @@ const UserContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		getUserData()
-	}, [userData, session])
+		console.log('render user context')
+	}, [session])
+
+	const values = useMemo(() => ({
+		userData,
+		setUserData,
+		postUserNames,
+		getUserData
+	}), [session, userData])
 
 	return (
-		<UserContext.Provider value={{
-			userData,
-			setUserData,
-			postUserNames,
-			getUserData
-		}
-		}>
+		<UserContext.Provider value={values}>
 			{children}
 		</UserContext.Provider>
 	)

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import UserPanels from '../../components/UserPanel/UserPanels'
 
 export default function Main() {
+
 	return (
 		<UserPanels>
 			<div className="background">

@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import DrawerPanel from './DrawerPanel'
 import TopPanel from './TopPanel'
 
 export default function UserPanels({ children }) {
 
 	return (
-		<div>
+		<div className='relative'>
 			<TopPanel />
 			<div className='flex'>
-				<DrawerPanel className='sticky top-0'/>
+				<DrawerPanel />
 				<div className='basis-4/5'>
 				{children}
 				</div>
@@ -16,3 +16,5 @@ export default function UserPanels({ children }) {
 		</div>
 	)
 }
+
+
