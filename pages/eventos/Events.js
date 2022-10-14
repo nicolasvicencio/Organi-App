@@ -24,18 +24,18 @@ export default function Events() {
 	useEffect(() => {
 		getEvents
 	}, [])
+	
 	return (
 		<UserPanels>
 			<div className="background">
 				<h2 className="title">Eventos</h2>
+				<div class="flex gap-3 justify-start p-6 cardBg">
+					<Link href={'/eventos/crear'}>
+						<a className="button-light p-2">Crear Evento</a>
+					</Link>
+				</div>
 				<div className="cardBg">
 					{error ? <Error message={error} /> : null}
-					<div class="flex gap-3 justify-start p-6">
-						<Link href={'/eventos/crear'}>
-							<a className="button-light p-2">Crear Evento</a>
-						</Link>
-					</div>
-
 					{!events ? (
 						<Spinner />
 					) : (

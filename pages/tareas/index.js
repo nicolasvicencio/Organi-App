@@ -1,12 +1,8 @@
 import React from 'react'
-import UserPanels from '../../components/UserPanel/UserPanels'
+import Tasks from './Tasks'
+
 export default function index() {
 	return (
-		<UserPanels>
-
-			<div>
-
-			</div>
-		</UserPanels>
+		<Tasks />
 	)
 }

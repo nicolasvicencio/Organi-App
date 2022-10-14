@@ -23,7 +23,7 @@ const TimerFocus = ({ timerData }) => {
 		<div className='flex flex-col gap-3 justify-center items-center'>
 			<CountdownCircleTimer
 				isPlaying={isStart}
-				duration={!isRest ? focus : rest}
+				duration={!isRest ? focus * 60 : rest * 60}
 				colors={[!isRest ? colorTag : restColor]}
 				size={300}
 				onComplete={() => {

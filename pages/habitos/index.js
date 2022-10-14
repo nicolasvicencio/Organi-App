@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function inde() {
+export default function index() {
 	return (
 		<div>inde</div>
 	)
