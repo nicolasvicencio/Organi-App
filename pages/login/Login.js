@@ -6,14 +6,16 @@ import { supabase } from "../../supabase/connection";
 import { FcGoogle } from "react-icons/fc";
 import { useUsers } from "../../context/UserContext";
 import { useAuth } from "../../context/AuthContext";
+import Error from '../../components/Error/Error'
 
 export default function Login() {
-	const { userData} = useUsers()
-	const {setSession} = useAuth()
+	const { userData } = useUsers()
+	const { setSession } = useAuth()
 
 	const [email, setEmail] = useState();
 	const [pass, setPass] = useState();
 	const [isLoaded, setIsLoaded] = useState(true)
+	const [error, setError] = useState(null)
 	const router = useRouter()
 
 	const handleClick = (e) => {
@@ -22,7 +24,8 @@ export default function Login() {
 		supabase.auth.signInWithPassword({ email: email, password: pass })
 			.then(({ data, error }) => {
 				if (error) {
-					console.log(error)
+					const newError = JSON.stringify(error.message)
+					setError(newError)
 					return setIsLoaded(true)
 				}
 				if (data) {
@@ -58,6 +61,7 @@ export default function Login() {
 								<h1 className="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
 									Ingresar a tu cuenta
 								</h1>
+								{error ? <Error message={error} /> : null}
 								<form className="space-y-4 md:space-y-6" action="#">
 									<div>
 										<label
@@ -110,12 +114,14 @@ export default function Login() {
 												</label>
 											</div>
 										</div>
-										<a
-											href="#"
-											className="text-sm font-medium text-gray-500 hover:underline "
-										>
-											¿Olvidaste tu contraseña?
-										</a>
+										<Link href={'/login/recuperar'}>
+											<a
+												href="#"
+												className="text-sm font-medium text-gray-500 hover:underline "
+											>
+												¿Olvidaste tu contraseña?
+											</a>
+										</Link>
 									</div>
 
 									<div

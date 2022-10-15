@@ -1,8 +1,8 @@
 import React from 'react'
-import Habits from './Habits'
+import Recovery from './Recovery'
 
 export default function index() {
 	return (
-		<Habits/>
+		<Recovery />
 	)
 }

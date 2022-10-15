@@ -2,22 +2,26 @@ import React, { useState } from "react";
 import Link from 'next/link'
 import { supabase } from "../../supabase/connection";
 import { useRouter } from "next/router";
+import Error from '../../components/Error/Error'
 
 export default function Register() {
 	const router = useRouter()
 	const [email, setEmail] = useState();
 	const [pass, setPass] = useState();
 	const [pass2, setPass2] = useState();
+	const [error, setError] = useState()
 
-	const handleClick = (e) => {
+	const handleClick = async (e) => {
 		e.preventDefault()
-		if (pass !== pass2) return;
+		if (pass !== pass2) return setError('Las contraseñas no coinciden');
 		 
-		supabase.auth.signUp({ email: email, password: pass })
-			.then(({ data, error }) => {
-				if (error) return console.log(error)
-				if (data) router.push('/login')
-			})
+		const {data, error} = await supabase.auth.signUp({ email: email, password: pass })
+				if (error) {
+					const newError = JSON.stringify(error.message)
+					console.log(newError)
+					return setError(newError)
+				} 
+				if (data) router.push('/login')		
 	};
 
 	return (
@@ -38,6 +42,7 @@ export default function Register() {
 						<h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
 							Crear Cuenta
 						</h1>
+						{error ? <Error message={error} /> : null}
 						<form className="space-y-4 md:space-y-6" action="#">
 							<div>
 								<label
