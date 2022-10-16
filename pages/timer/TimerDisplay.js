@@ -5,19 +5,30 @@ import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs'
 
 
 const TimerFocus = ({ timerData }) => {
-	const { focus, rest, sessions, restSessions, colorTag, tag } = timerData
+	const { focus, rest, sessions, colorTag, tag } = timerData
 	const [count, setCount] = useState(1)
+	const [restCount, setRestCount] = useState()
 	const [isStart, setIsStart] = useState(true)
 	const [isRest, setIsRest] = useState(false)
 	const restColor = '#f59e0b'
-	const startTimer = () => {
-		setIsStart(!isStart)
+
+	const startTimer = () => setIsStart(!isStart)
+
+
+	const handleComplete = () => {
+		if (!isRest) {
+			if(count === sessions) {
+				setIsStart(false)
+			}
+			setCount(count + 1)
+			setIsRest(true)
+			return { shouldRepeat: true, newInitialRemainingTime: focus }
+		}else{
+			setRestCount(restCount + 1)
+			setIsRest(false)
+			return { shouldRepeat: true, newInitialRemainingTime: rest }
+		}
 	}
-
-	useEffect(() => {
-		console.log('render Timer component')
-	},)
-
 
 	return (
 		<div className='flex flex-col gap-3 justify-center items-center'>
@@ -26,11 +37,7 @@ const TimerFocus = ({ timerData }) => {
 				duration={!isRest ? focus * 60 : rest * 60}
 				colors={[!isRest ? colorTag : restColor]}
 				size={300}
-				onComplete={() => {
-				
-			
-
-				}}
+				onComplete={handleComplete}
 			>
 				{({ remainingTime }) => {
 					const minutes = Math.floor(remainingTime / 60)
@@ -38,8 +45,8 @@ const TimerFocus = ({ timerData }) => {
 					return (
 						<div className={`text-5xl font-semibold text-black flex flex-col items-center gap-2`}>
 							<>
-								{isStart ? <span className='text-sm text-black'>Sesion {count}-{sessions}</span> : null}					
-								{`${minutes}:${seconds}`}
+								{isStart ? <span className='text-sm text-black'>{isRest ? 'Descanso' : `Sesion ${count}-${sessions}`}</span> : null}
+								{isStart ? `${minutes}:${seconds}` : count === sessions ? 'Fin' : null}
 								{isStart ? <span className='text-sm text-black'>{!isRest ? 'Enfocate!' : 'Toma un descanso!'}</span> : null}
 							</>
 						</div>

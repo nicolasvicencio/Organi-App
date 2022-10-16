@@ -48,7 +48,7 @@ export default function Habits() {
 
 	const x = 'x'
 	const check = '✓'
-	const array = new Array(7)
+
 
 	const handleCreate = () => { }
 

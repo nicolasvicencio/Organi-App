@@ -23,10 +23,10 @@ const UserContextProvider = ({ children }) => {
 	const postUserNames = async (firstName, lastName) => {
 		if (userData) {
 			const { data, error } = await supabase.from('users').update({ first_name: firstName, last_name: lastName }).eq('id', userData.id)
-			if (error) console.log(error)
+			if (error) return console.log(error)
 			if (data) {
 				const { data, error } = await supabase.from('components_user').insert([{ user_id: userData.id }])
-				if (error) console.error
+				if (error) return console.error
 			}
 		}
 	}

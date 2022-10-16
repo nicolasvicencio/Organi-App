@@ -10,23 +10,19 @@ export default function Timer() {
 		focus: 30,
 		rest: 5,
 		sessions: 4,
-		restSessions: 15,
 		tag: 'Sin Etiqueta',
 		colorTag: '#4caf50'
 	}
 	)
 	const handleSetData = (data) => setData(data)
 
-	useEffect(() => {
-		console.log('changes')
-	})
 	return (
 		<UserPanels>
 			<div className="background">
 				<h2 className="title">Timer</h2>
 				<div className=" rounded-xl bg-white p-7">
 					{/* <p>Configura tu timer</p> */}
-					<article className='flex justify-between'>
+					<article className='flex justify-around '>
 						<TimerControls handleSetData={handleSetData} />
 						<div className='flex flex-col items-center gap-6 p-3'>
 							<div>

@@ -7,11 +7,10 @@ export default function UserPanels({ children }) {
 	return (
 		<div className='relative'>
 			<TopPanel />
-			<DrawerPanel />
 			<div className='flex '>
-				<div className='basis-1/6'></div>
-				<div className='basis-11/12'>
-				{children}
+			<DrawerPanel />
+				<div className='flex-1' >
+					{children}
 				</div>
 			</div>
 		</div>
