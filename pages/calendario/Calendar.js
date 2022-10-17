@@ -12,7 +12,7 @@ export default function Calendar() {
 				<h2 className="title">Calendario</h2>
 			
 					<h3 className='text-center text-5xl my-6 font-semibold cardBg py-2'>{month}</h3>
-					<Scheduler />
+					<Scheduler /> 
 
 				</div>
 		

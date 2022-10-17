@@ -22,7 +22,7 @@ export default function Timer() {
 				<h2 className="title">Timer</h2>
 				<div className=" rounded-xl bg-white p-7">
 					{/* <p>Configura tu timer</p> */}
-					<article className='flex justify-around '>
+					<article className='flex justify-between ml-6 '>
 						<TimerControls handleSetData={handleSetData} />
 						<div className='flex flex-col items-center gap-6 p-3'>
 							<div>
