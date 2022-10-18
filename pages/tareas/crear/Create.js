@@ -4,7 +4,7 @@ import UserPanels from '../../../components/UserPanel/UserPanels'
 import { useUsers } from '../../../context/UserContext'
 import { supabase } from '../../../supabase/connection'
 
-export default function Create() {
+function Create() {
 	const { userData } = useUsers()
 	const [name, setName] = useState()
 	const [description, setDescription] = useState()
@@ -68,3 +68,5 @@ export default function Create() {
 		</UserPanels >
 	)
 }
+
+export default Create
