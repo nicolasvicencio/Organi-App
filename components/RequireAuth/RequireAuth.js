@@ -13,7 +13,7 @@ export default function RequireAuth({ children }) {
 
 	useEffect(() => {
 		pushRoute(session)
-	}, [session])
+	}, [session, pushRoute])
 
 	return (
 		<>{children}</>
