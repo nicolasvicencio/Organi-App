@@ -8,9 +8,11 @@ export default function RequireAuth({ children }) {
 	const { userData } = useUsers()
 	const router = useRouter()
 
+	const pushRoute = (session) => !session ? router.push('/login') : router.push('/inicio')
+	
+
 	useEffect(() => {
-		!session ? router.push('/login') : router.push('/inicio')
-		// eslint - disable - next - line react - hooks / exhaustive - deps
+		pushRoute(session)
 	}, [session])
 
 	return (
