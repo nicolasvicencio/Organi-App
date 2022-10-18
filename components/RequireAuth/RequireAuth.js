@@ -11,12 +11,12 @@ export default function RequireAuth({ children }) {
 
 
 	useEffect(() => {
-		if(session){
+		if (session) {
 			router.push('/inicio')
 		} else {
-			router.push('/login') 
+			router.push('/login')
 		}
-		
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [session])
 
 	return (
