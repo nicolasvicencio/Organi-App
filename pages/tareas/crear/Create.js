@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import UserPanels from '../../../components/UserPanel/UserPanels'
 import { useUsers } from '../../../context/UserContext'
 import { supabase } from '../../../supabase/connection'
+import Error from '../../../components/Error/Error'
 
 function Create() {
 	const { userData } = useUsers()
