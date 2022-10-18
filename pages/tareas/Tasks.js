@@ -18,7 +18,7 @@ export default function Tasks() {
 			if (error) return setError(error)
 			if (data) return setTasks(data)
 		}
-	}, [tasks, userData])
+	}, [ userData])
 
 		
 	const handleFilter = (e) => setFilter(e.target.event)

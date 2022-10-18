@@ -21,7 +21,7 @@ export default function Home() {
       getUserData()
       router.push('/inicio')
     }
-  },[session, getSession, getUserData])
+  },[session, getSession, getUserData, router])
   
   return (
       <main className='relative'>

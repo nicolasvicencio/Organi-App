@@ -11,8 +11,10 @@ export default function RequireAuth({ children }) {
 	useEffect(() => {
 		if (!session) {
 			router.push('/login')
+			return
 		} else {
 			router.push('/inicio')
+			return
 		}
 	}, [session])
 
