@@ -5,6 +5,7 @@ import { supabase } from "../../supabase/connection";
 import { useUsers } from "../../context/UserContext";
 import UserPanels from "../../components/UserPanel/UserPanels";
 import Link from "next/link";
+import Error from '../../components/Error/Error'
 
 export default function Events() {
 	const [events, setEvents] = useState();

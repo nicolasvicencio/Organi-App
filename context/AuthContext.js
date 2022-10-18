@@ -9,7 +9,7 @@ const AuthContextProvider = ({children}) => {
 
 	const getSession = async() => {
 		const {data, error} = await supabase.auth.getSession()
-		if(error) return console.log(error)
+		if(error) return error
 		if(data.session){
 			setSession(data.session.access_token)
 		}
@@ -17,12 +17,11 @@ const AuthContextProvider = ({children}) => {
 
 	const signOutUser = async () => {
 		const {error} = await supabase.auth.signOut()
-		error && console.log(error)
+		error && error
 	}
 
 	useEffect(() => {
 		getSession()
-		console.log('render auth context')
 	}, [session])
 
 	const values = useMemo(() => ({

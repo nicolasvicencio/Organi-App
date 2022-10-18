@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import UserPanels from '../../../components/UserPanel/UserPanels'
 import { useUsers } from '../../../context/UserContext'
 import { supabase } from '../../../supabase/connection'
 
-export default function index() {
+export default function Create() {
 	const { userData } = useUsers()
 	const [name, setName] = useState()
 	const [description, setDescription] = useState()

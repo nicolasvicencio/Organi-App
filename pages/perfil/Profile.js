@@ -5,9 +5,7 @@ import ProfileInfoCard from "./ProfileInfoCard";
 import ProfileInfoDetails from "./ProfileInfoDetails";
 
 export default function Profile() {
-useEffect(() => {
-	console.log('profile component')
-}, )
+
 	return (
 		<UserPanel>
 			<div className="background overflow-scroll">

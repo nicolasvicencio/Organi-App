@@ -16,8 +16,11 @@ export default function Home() {
 
   useEffect(() => {
     getSession()
-    !session ? router.push('/login') : router.push('/inicio')
-    getUserData()
+    if(!session) return router.push('/login')
+    if(session) {
+      getUserData()
+      router.push('/inicio')
+    }
   },[session, getSession, getUserData])
   
   return (

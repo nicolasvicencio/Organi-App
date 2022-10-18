@@ -12,7 +12,7 @@ export default function TopProfileCard() {
 	
 	const handleLogOut =() => {
 		signOutUser()
-		router.push('/login')
+		return router.push('/login')
 	}
 	
 	return (

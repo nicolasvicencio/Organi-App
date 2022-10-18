@@ -18,7 +18,6 @@ export default function Register() {
 		const {data, error} = await supabase.auth.signUp({ email: email, password: pass })
 				if (error) {
 					const newError = JSON.stringify(error.message)
-					console.log(newError)
 					return setError(newError)
 				} 
 				if (data) router.push('/login')		

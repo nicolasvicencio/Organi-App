@@ -65,7 +65,6 @@ export default function Habits() {
 					array: newArray
 				}
 			}
-			console.log("hola")
 			return el
 		})
 
@@ -77,8 +76,8 @@ export default function Habits() {
 
 	return (
 		<UserPanels>
-			<div class="background">
-				<h1 class="title">Habitos</h1>
+			<div className="background">
+				<h1 className="title">Habitos</h1>
 				<article className='cardBg p-6 '>
 					<div className='flex gap-4'>
 						<input type="text" name="" id="" className='inputLabel' placeholder='Nuevo habito' />

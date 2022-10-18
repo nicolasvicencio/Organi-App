@@ -18,20 +18,20 @@ export default function Tasks() {
 			if (error) return setError(error)
 			if (data) return setTasks(data)
 		}
-	}, [tasks])
+	}, [tasks, userData])
 
 		
 	const handleFilter = (e) => setFilter(e.target.event)
 	
 	useEffect(() => {
 		getTasks
-	}, [userData, tasks])
+	}, [userData, tasks, getTasks])
 	
 	return (
 		<UserPanels>
 			<div className="background">
 				<h2 className="title">Tareas</h2>
-				<div class="flex gap-3 justify-start p-6 cardBg">
+				<div className="flex gap-3 justify-start p-6 cardBg">
 					<Link href={'/tareas/crear'}>
 						<a className="button-light p-2">Crear tarea</a>
 					</Link>
@@ -51,9 +51,7 @@ export default function Tasks() {
 						? <Spinner />
 						: tasks.map(task => <TaskItem key={task.id} data={task}/> )
 					}
-			
-					
-				
+
 				</div>
 			</div>
 		</UserPanels>

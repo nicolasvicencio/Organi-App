@@ -18,7 +18,6 @@ export default function Create() {
 
 	const handleCreate = async (e) => {
 		e.preventDefault()
-		console.log(name, description, priority, date)
 		if (!name || !description || !priority || date < new Date()) {
 			setError('Todos los campos deben ser validos')
 			return

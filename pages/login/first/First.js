@@ -1,11 +1,13 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import Error from "../../../components/Error/Error";
 import Spinner from "../../../components/Spinner/Spinner";
 import { useUsers } from "../../../context/UserContext";
 
 
 export default function First() {
 	const [isLoaded, setIsLoaded] = useState(true)
+	const [error, setError] = useState(null)
 	const {postUserNames} = useUsers()
 	const router = useRouter()
 
@@ -15,7 +17,7 @@ export default function First() {
 	const handleClick = (e) => {
 		e.preventDefault()
 		setIsLoaded(false)
-		if (!lastName || !firstName) return console.log("Debe ingresar los campos")
+		if (!lastName || !firstName) return setError("Debe ingresar los campos")
 		postUserNames(firstName, lastName)
 		router.push('/inicio')
 	}
@@ -36,6 +38,7 @@ export default function First() {
 									Bienvenido desconocido! ¿Cual es tu nombre?
 								</h1>
 								<form className="space-y-4 md:space-y-6" action="#">
+									{error ? <Error message={error} /> : null}
 									<div>
 										<label
 											htmlFor="name"

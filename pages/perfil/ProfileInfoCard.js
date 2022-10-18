@@ -15,7 +15,7 @@ export default function ProfileInfoCard() {
 			.from("users")
 			.update({ description: description })
 			.eq("id", userData.id);
-			if(error) return console.log(error)
+			if(error) return error
 		setIsEdit(false);
 
 	};

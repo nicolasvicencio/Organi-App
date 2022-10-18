@@ -13,7 +13,7 @@ import { appointments } from './dummyData';
 
 const currentDate = new Date();
 
-export default function () {
+function Calendar() {
 	return (
 		<Paper className='cardBg p-6'>
 			<Scheduler
@@ -29,3 +29,4 @@ export default function () {
 	)
 }
 
+export default Calendar

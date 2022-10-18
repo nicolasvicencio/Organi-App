@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NumberSelector from './NumberSelector'
 import ColorSelector from './ColorSelector'
 
@@ -40,4 +40,4 @@ function TimerControls({ handleSetData }) {
 	)
 }
 
-export default memo(TimerControls)
+export default TimerControls
