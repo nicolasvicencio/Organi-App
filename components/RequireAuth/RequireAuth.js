@@ -10,6 +10,7 @@ export default function RequireAuth({ children }) {
 
 	useEffect(() => {
 		!session ? router.push('/login') : router.push('/inicio')
+		// eslint - disable - next - line react - hooks / exhaustive - deps
 	}, [session])
 
 	return (

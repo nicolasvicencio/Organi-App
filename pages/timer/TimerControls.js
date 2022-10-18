@@ -17,6 +17,7 @@ function TimerControls({ handleSetData }) {
 			tag,
 			colorTag
 		})
+		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [focus, rest, sessions, tag, colorTag])
 
 	return (
