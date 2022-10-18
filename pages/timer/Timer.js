@@ -14,7 +14,7 @@ export default function Timer() {
 		colorTag: '#4caf50'
 	}
 	)
-	const handleSetData = useCallback((data) => setData(data), [data])
+	const handleSetData = useCallback((data) => setData(data), [showTimer])
 
 	return (
 		<UserPanels>

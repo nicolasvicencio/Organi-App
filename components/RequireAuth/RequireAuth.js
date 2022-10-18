@@ -9,13 +9,7 @@ export default function RequireAuth({ children }) {
 	const router = useRouter()
 
 	useEffect(() => {
-		if (!session) {
-			router.push('/login')
-			return
-		} else {
-			router.push('/inicio')
-			return
-		}
+		!session ? router.push('/login') : router.push('/inicio')
 	}, [session])
 
 	return (
