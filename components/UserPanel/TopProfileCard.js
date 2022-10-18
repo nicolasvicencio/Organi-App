@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useUsers } from "../../context/UserContext";
 import { useRouter } from "next/router";
 import { useAuth } from "../../context/AuthContext";
+import Image from "next/image";
 
 export default function TopProfileCard() {
 	const { userData} = useUsers()
@@ -17,9 +18,11 @@ export default function TopProfileCard() {
 	return (
 		<div className="flex items-center gap-3 py-0 pr-5">
 			<Link href="/perfil" className="font-bold text-sky-400 hover:text-sky-600">
-				<img
+				<Image
 					src="https://placeimg.com/30/30/people"
 					alt="imagen de perfil"
+					width={30}
+					height={30}
 					className="ml-4 rounded-full border-2 border-sky-400"
 				/>
 			</Link>

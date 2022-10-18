@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useUsers } from "../../context/UserContext";
 import {supabase} from '../../supabase/connection'
 import Spinner from "../../components/Spinner/Spinner";
+import Image from "next/image";
 
 
 export default function ProfileInfoCard() {
@@ -30,9 +31,11 @@ export default function ProfileInfoCard() {
 
 	return (
 		<div className="flex w-2/5 flex-col  items-center justify-center rounded-xl bg-white p-14 shadow-xl">
-			<img
+			<Image
 				src="https://placeimg.com/250/250/people"
 				alt="profile-picture"
+				width={250}
+				height={250}
 				className="rounded-full border-2 border-gray-800 w-60 "
 			/>
 			<div>
