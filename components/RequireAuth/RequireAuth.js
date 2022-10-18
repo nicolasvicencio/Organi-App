@@ -8,12 +8,16 @@ export default function RequireAuth({ children }) {
 	const { userData } = useUsers()
 	const router = useRouter()
 
-	const pushRoute = (session) => !session ? router.push('/login') : router.push('/inicio')
+	const pushRoute = (session) => 
 	
 
 	useEffect(() => {
-		pushRoute(session)
-	}, [session, pushRoute])
+		if(session){
+			router.push('/inicio')
+		} else {
+			router.push('/login') 
+		}
+	}, [session])
 
 	return (
 		<>{children}</>
