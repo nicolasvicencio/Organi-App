@@ -23,7 +23,7 @@ export default function Events() {
 
 	useEffect(() => {
 		getEvents
-	}, [])
+	}, [events, getEvents])
 	
 	return (
 		<UserPanels>

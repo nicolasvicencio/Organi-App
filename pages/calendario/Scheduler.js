@@ -13,16 +13,19 @@ import { appointments } from './dummyData';
 
 const currentDate = new Date();
 
-export default () => (
-	<Paper className='cardBg p-6'>
-		<Scheduler
-			data={appointments}
-		>
-			<ViewState
-				currentDate={currentDate}
-			/>
-			<MonthView />
-			<Appointments />
-		</Scheduler>
-	</Paper>
-);
+export default function () {
+	return (
+		<Paper className='cardBg p-6'>
+			<Scheduler
+				data={appointments}
+			>
+				<ViewState
+					currentDate={currentDate}
+				/>
+				<MonthView />
+				<Appointments />
+			</Scheduler>
+		</Paper>
+	)
+}
+

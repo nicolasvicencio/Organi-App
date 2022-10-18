@@ -5,13 +5,13 @@ import { useUsers } from '../../context/UserContext'
 
 export default function RequireAuth({ children }) {
 	const { session } = useAuth()
-	const {userData} = useUsers()
+	const { userData } = useUsers()
 	const router = useRouter()
 
 	useEffect(() => {
-		if(!session ) {
+		if (!session) {
 			router.push('/login')
-		}else{
+		} else {
 			router.push('/inicio')
 		}
 	}, [session])

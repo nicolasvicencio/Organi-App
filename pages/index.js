@@ -18,7 +18,7 @@ export default function Home() {
     getSession()
     !session ? router.push('/login') : router.push('/inicio')
     getUserData()
-  },[session])
+  },[session, getSession, getUserData])
   
   return (
       <main className='relative'>

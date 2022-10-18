@@ -65,6 +65,7 @@ export default function Habits() {
 					array: newArray
 				}
 			}
+			console.log("hola")
 			return el
 		})
 
@@ -99,7 +100,7 @@ export default function Habits() {
 						<tbody>
 							{
 								habits.map((habit => (
-									<tr className='w-full border-b-2'>
+									<tr key={habit.id}className='w-full border-b-2'>
 										<td className='p-4'>
 											<p className='font-semibold'>{habit.name}</p>
 											<span className='font-light'>Racha: {habit.streak} </span>
