@@ -1,4 +1,4 @@
-export const appointments = [
+export default appointments = [
 	{
 		title: 'Website Re-Design Plan',
 		startDate: new Date(2018, 6, 23, 9, 30),
