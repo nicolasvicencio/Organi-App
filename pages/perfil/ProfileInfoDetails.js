@@ -16,7 +16,7 @@ export default function ProfileInfoDetails() {
         {isEdit ? "Actualizar tu perfil" : "Informacion del usuario"}
       </h2>
       {isEdit ? (
-        <EditProfile userData={userData} setIsEdit={setIsEdit} />
+        <EditProfile setIsEdit={setIsEdit} />
       ) : (
         <article className="grid grid-cols-2 gap-2 px-14 py-8">
           <div className="profileContainer">

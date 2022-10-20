@@ -6,15 +6,16 @@ import Spinner from '../../components/Spinner/Spinner'
 
 
 const TimerFocus = ({ timerData }) => {
-	const { focus, rest, sessions, colorTag, tag } = timerData
 	const [count, setCount] = useState(1)
 	const [restCount, setRestCount] = useState()
 	const [isStart, setIsStart] = useState(true)
 	const [isRest, setIsRest] = useState(false)
 	const restColor = '#f59e0b'
 
-	const startTimer = () => setIsStart(!isStart)
+	if(!timerData) return <Spinner />
+	const { focus , rest, sessions, colorTag, tag } = timerData
 
+	const startTimer = () => setIsStart(!isStart)
 
 	const handleComplete = () => {
 		if (!isRest) {
@@ -30,7 +31,7 @@ const TimerFocus = ({ timerData }) => {
 			return { shouldRepeat: true, newInitialRemainingTime: rest }
 		}
 	}
-	if(!timerData) return <Spinner />
+	if(!timerData.focus) return <Spinner />
 
 	return (
 		<div className='flex flex-col gap-3 justify-center items-center'>

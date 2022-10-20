@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { BsInstagram, BsLinkedin, BsGithub } from "react-icons/bs";
+import Spinner from "../../components/Spinner/Spinner";
+import { useUsers } from "../../context/UserContext";
 import { supabase } from "../../supabase/connection";
 
-export default function EditProfile({ userData, setIsEdit }) {
-  const [firstName, setFirstName] = useState(userData.first_name);
-  const [lastName, setLastName] = useState(userData.last_name);
-  const [email, setEmail] = useState(userData.email);
-  const [phone, setPhone] = useState(userData.phone);
-  const [ig, setIg] = useState(userData.ig_url);
-  const [lk, setLk] = useState(userData.link_url);
-  const [gh, setGh] = useState(userData.gh_url);
+export default function EditProfile({ setIsEdit }) {
+  const { userData } = useUsers()
+  const [firstName, setFirstName] = useState(userData ? userData.first_name : null);
+  const [lastName, setLastName] = useState(userData ? userData.last_name : null);
+  const [email, setEmail] = useState(userData ? userData.email : null);
+  const [phone, setPhone] = useState(userData ? userData.phone : null);
+  const [ig, setIg] = useState(userData ? userData.ig_url : null);
+  const [lk, setLk] = useState(userData ? userData.link_url : null);
+  const [gh, setGh] = useState(userData ? userData.gh_url : null);
 
   const handleClick = async () => {
     const { data: res, error } = await supabase
@@ -26,6 +29,8 @@ export default function EditProfile({ userData, setIsEdit }) {
       .eq("id", userData.id);
     setIsEdit(false);
   };
+
+  if (!userData) return <Spinner />
 
   return (
     <>

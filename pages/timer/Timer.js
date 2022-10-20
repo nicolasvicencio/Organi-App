@@ -26,12 +26,12 @@ export default function Timer() {
 						<TimerControls handleSetData={handleSetData} />
 						<div className='flex flex-col items-center gap-6 p-3'>
 							<div>
-								{showTimer
-									? <TimerFocus timerData={data} />
-									: <div className='flex flex-col items-center text-center justify-center mt-20'>
+								{!showTimer
+									? <div className='flex flex-col items-center text-center justify-center mt-20'>
 										<p>Presiona el boton iniciar para activar el temporizador!</p>
 										<button onClick={() => setShowTimer(true)} className='p-2 bg-zinc-600 text-white rounded-md my-4'>Iniciar</button>
 									</div>
+									: <TimerFocus timerData={data} />
 								}
 							</div>
 						</div>

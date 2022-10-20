@@ -8,10 +8,10 @@ import Spinner from "../../components/Spinner/Spinner";
 
 export default function EventItem({ data }) {
   const [modalOpen, setModalOpen] = useState(false);
+  if (!data) return <Spinner />
   const formatDate = (date) => new Date(date).toLocaleDateString("es-ES");
-  const priority = "★".repeat(data.id_priority).padEnd(3, "☆");
+  const priority = data.priority ? "★".repeat(data.id_priority).padEnd(3, "☆") : null;
 
-if(!data) return <Spinner />
 
   return (
     <div className="z-40 my-4 flex justify-between bg-white py-7 shadow-md">

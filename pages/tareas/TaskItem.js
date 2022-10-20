@@ -4,18 +4,17 @@ import Spinner from '../../components/Spinner/Spinner';
 import { supabase } from '../../supabase/connection';
 
 export default function TaskItem({ data }) {
-	const priority = "★".repeat(data.priority).padEnd(3, "☆");
+	if (!data) return <Spinner />
+	const priority = data.priority ? "★".repeat(data.priority).padEnd(3, "☆") : null;
 
 	const handleDelete = async () => {
 		const { data: svData, error } = await supabase.from('task').delete().eq('id', data.id)
 		if (error) return error
 	}
 	const handleComplete = async () => {
-		const {data: svData, error} = await supabase.from('task').update({state: 2}).eq('id', data.id)
+		const { data: svData, error } = await supabase.from('task').update({ state: 2 }).eq('id', data.id)
 		if (error) return error
 	}
-
-	if (!data ) return <Spinner />
 
 
 	return (
