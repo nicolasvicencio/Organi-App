@@ -7,7 +7,7 @@ import {
 	Appointments,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-import { appointments } from './dummyData';
+import appointments from './dummyData';
 
 
 
