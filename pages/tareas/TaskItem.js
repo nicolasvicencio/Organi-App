@@ -1,5 +1,6 @@
 import React from 'react'
 import { TiTick, TiDelete, TiEdit } from 'react-icons/ti'
+import Spinner from '../../components/Spinner/Spinner';
 import { supabase } from '../../supabase/connection';
 
 export default function TaskItem({ data }) {
@@ -13,6 +14,8 @@ export default function TaskItem({ data }) {
 		const {data: svData, error} = await supabase.from('task').update({state: 2}).eq('id', data.id)
 		if (error) return error
 	}
+
+	if (!data ) return <Spinner />
 
 
 	return (

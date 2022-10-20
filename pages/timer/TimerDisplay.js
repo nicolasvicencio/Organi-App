@@ -1,6 +1,7 @@
 import { memo, useEffect, useState } from 'react'
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs'
+import Spinner from '../../components/Spinner/Spinner'
 
 
 
@@ -29,6 +30,7 @@ const TimerFocus = ({ timerData }) => {
 			return { shouldRepeat: true, newInitialRemainingTime: rest }
 		}
 	}
+	if(!timerData) return <Spinner />
 
 	return (
 		<div className='flex flex-col gap-3 justify-center items-center'>

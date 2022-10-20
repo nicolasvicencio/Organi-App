@@ -3,6 +3,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { MdAlarmAdd } from "react-icons/md";
 import { BsTrash } from "react-icons/bs";
 import Modal from "../../components/Modal/Modal";
+import Spinner from "../../components/Spinner/Spinner";
 
 
 export default function EventItem({ data }) {
@@ -10,7 +11,7 @@ export default function EventItem({ data }) {
   const formatDate = (date) => new Date(date).toLocaleDateString("es-ES");
   const priority = "★".repeat(data.id_priority).padEnd(3, "☆");
 
-
+if(!data) return <Spinner />
 
   return (
     <div className="z-40 my-4 flex justify-between bg-white py-7 shadow-md">
