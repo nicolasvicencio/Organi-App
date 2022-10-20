@@ -7,7 +7,7 @@ import {
 	Appointments,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-import appointments from './dummyData';
+
 
 
 
@@ -17,7 +17,6 @@ function Calendar() {
 	return (
 		<Paper className='cardBg p-6'>
 			<Scheduler
-				data={appointments}
 			>
 				<ViewState
 					currentDate={currentDate}
