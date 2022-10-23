@@ -60,9 +60,11 @@ export default function Habits() {
 			if (el.id === habit.id) {
 				let newArray = el.array
 				newArray[index] === '✗' ? newArray[index] = check : newArray[index] = '✗'
+				console.log(el)
+
 				return {
 					...el,
-					array: newArray
+					array: newArray,
 				}
 			}
 			return el
@@ -79,13 +81,13 @@ export default function Habits() {
 			<div className="background">
 				<h1 className="title">Habitos</h1>
 				<article className='cardBg p-6 '>
-					<div className='flex gap-4'>
+					<div className='flex gap-4 mb-6'>
 						<input type="text" name="" id="" className='inputLabel' placeholder='Nuevo habito' />
 						<button onClick={handleCreate} className='button-light p-2'>Crear</button>
 					</div>
-					<table className='w-full border-1 border-gray-600 '>
+					<table className='w-full border-1 border-gray-800 '>
 						<thead className='rounded-md'>
-							<tr className='bg-gray-500 text-white font-bold '>
+							<tr className='bg-gray-800 text-white font-bold '>
 								<th  className='py-5'>Habitos</th>
 								<th  className='py-5'>Lun</th>
 								<th  className='py-5'>Mar</th>
