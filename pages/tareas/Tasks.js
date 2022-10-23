@@ -10,7 +10,8 @@ export default function Tasks() {
 	const { userData } = useUsers()
 	const [error, setError] = useState()
 	const [tasks, setTasks] = useState()
-	const [filter, setFilter] = useState(3)
+	const [filter, setFilter] = useState('3')
+	const [matches, setMatches] = useState()
 
 	const getTasks = useMemo(async () => {
 		if (userData) {
@@ -18,15 +19,32 @@ export default function Tasks() {
 			if (error) return setError(error)
 			if (data) return setTasks(data)
 		}
-	}, [ userData])
+	}, [userData])
 
-		
-	const handleFilter = (e) => setFilter(e.target.event)
-	
+
+	const handleFilter = (e) => {
+		setFilter(e.target.value)
+	}
+
 	useEffect(() => {
 		getTasks
-	}, [userData, tasks, getTasks])
-	
+	}, [tasks, getTasks, matches])
+
+	useEffect(() => {
+		if (tasks) {
+			if (filter === '2') {
+				const newTasks = tasks.filter(task => task.state === 2)
+				setMatches(newTasks)
+			} else if (filter === '1') {
+				const newTasks = tasks.filter(task => task.state === 1)
+				setMatches(newTasks)
+			} else {
+				setMatches(tasks)
+			}
+		}
+
+	}, [filter, tasks, matches])
+
 	return (
 		<UserPanels>
 			<div className="background">
@@ -47,9 +65,9 @@ export default function Tasks() {
 
 				</div>
 				<div className="grid grid-cols-4 place-content-evenly gap-6 mt-5 p-6 cardBg">
-					{!tasks
+					{!matches
 						? <Spinner />
-						: tasks.map(task => <TaskItem key={task.id} data={task}/> )
+						: matches.map(task => <TaskItem key={task.id} data={task} />)
 					}
 
 				</div>

@@ -3,8 +3,6 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs'
 import Spinner from '../../components/Spinner/Spinner'
 
-
-
 const TimerFocus = ({ timerData }) => {
 	const [count, setCount] = useState(1)
 	const [restCount, setRestCount] = useState()
