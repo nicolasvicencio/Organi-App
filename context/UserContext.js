@@ -14,7 +14,7 @@ const UserContextProvider = ({ children }) => {
 			const { data: { user } } = await supabase.auth.getUser(session)
 			if(user) {
 				const { data, error } = await supabase.from('users').select().eq('id', user.id)
-				if(error) return error
+				if(error) return console.log(error)
 				if(data)  setUserData(data[0])
 			}
 		}

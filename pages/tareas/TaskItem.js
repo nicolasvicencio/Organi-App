@@ -8,7 +8,6 @@ import EditTaskItem from './EditTaskItem';
 export default function TaskItem({ data }) {
 	if (!data) return <Spinner />
 	const priority = data.priority ? "★".repeat(data.priority).padEnd(3, "☆") : null;
-	const router = useRouter()
 	const [isEdit, setIsEdit] = useState(false)
 
 	const handleDelete = async () => {
@@ -18,8 +17,8 @@ export default function TaskItem({ data }) {
 	const handleComplete = async () => {
 		const { data: svData, error } = await supabase.from('task').update({ state: 2 }).eq('id', data.id)
 		if (error) return error
-	}
 
+	}
 
 	if (isEdit) return <EditTaskItem data={data} setIsEdit={setIsEdit}/>
 

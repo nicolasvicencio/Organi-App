@@ -58,13 +58,14 @@ export default function EditProfile({ setIsEdit }) {
         </div>
         <div className="profileContainer">
           <p className="profileLabel">Email</p>
-          <input
+          <p>{userData.email}</p>
+          {/* <input
             className="profileInput"
             type={"text"}
             value={email}
             placeholder={userData.email}
             onChange={(e) => setEmail(e.target.value)}
-          />
+          /> */}
         </div>
 
         <div className="profileContainer">
