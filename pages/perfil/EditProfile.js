@@ -3,6 +3,8 @@ import { BsInstagram, BsLinkedin, BsGithub } from "react-icons/bs";
 import Spinner from "../../components/Spinner/Spinner";
 import { useUsers } from "../../context/UserContext";
 import { supabase } from "../../supabase/connection";
+import { FiExternalLink } from 'react-icons/fi'
+import { useRouter } from "next/router";
 
 export default function EditProfile({ setIsEdit }) {
   const { userData } = useUsers()
@@ -13,6 +15,7 @@ export default function EditProfile({ setIsEdit }) {
   const [ig, setIg] = useState(userData ? userData.ig_url : null);
   const [lk, setLk] = useState(userData ? userData.link_url : null);
   const [gh, setGh] = useState(userData ? userData.gh_url : null);
+  const router = useRouter()
 
   const handleClick = async () => {
     const { data: res, error } = await supabase
@@ -58,7 +61,10 @@ export default function EditProfile({ setIsEdit }) {
         </div>
         <div className="profileContainer">
           <p className="profileLabel">Email</p>
-          <p>{userData.email}</p>
+          <div class="flex gap-3 items-center">
+            <p>{userData.email}</p>
+            <FiExternalLink onClick={() => router.push('perfil/cambiar-email')}/>
+          </div>
           {/* <input
             className="profileInput"
             type={"text"}

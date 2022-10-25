@@ -41,14 +41,6 @@ export default function Login() {
 	return (
 		<section className="bg-gray-800  leading-normal">
 			<div className="mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">
-				{/* <a href="#" className="">
-          <img
-          className="mr-2 h-8 w-8"
-          src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
-          alt="logo"
-          />
-        </a> */}
-
 				<h3 className="mb-6 flex items-center text-3xl  font-bold text-white ">
 					OrganiApp
 				</h3>
