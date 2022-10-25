@@ -7,8 +7,8 @@ export const AuthContext = createContext()
 const AuthContextProvider = ({children}) => {
 	const [session, setSession] = useState()
 
-	const getSession = async() => {
-		const {data, error} = await supabase.auth.getSession()
+	const getSession = async(session) => {
+		const {data, error} = await supabase.auth.getSession(session ? session : null)
 		if(error) return error
 		if(data.session){
 			setSession(data.session.access_token)
@@ -18,9 +18,13 @@ const AuthContextProvider = ({children}) => {
 	const signOutUser = async () => {
 		const {error} = await supabase.auth.signOut()
 		error && error
+		localStorage.setItem('session', null)
 	}
 
 	useEffect(() => {
+		if(localStorage.getItem('session')){
+			getSession(localStorage.getItem('session'))
+		}
 		getSession()
 	}, [session])
 

@@ -16,6 +16,7 @@ export default function Login() {
 	const [pass, setPass] = useState();
 	const [isLoaded, setIsLoaded] = useState(true)
 	const [error, setError] = useState(null)
+	const [remember, setRemeber] = useState(false)
 	const router = useRouter()
 
 	const handleClick = (e) => {
@@ -30,6 +31,7 @@ export default function Login() {
 				}
 				if (data) {
 					setSession(data.session.access_token)
+					if(remember) localStorage.setItem('session', data.session.access_token)
 					if (userData) {
 						setIsLoaded(false)
 						!userData.first_name ? router.push('/login/first') : router.push('/inicio')
@@ -98,6 +100,7 @@ export default function Login() {
 													type="checkbox"
 													className="focus:ring-3 focus:ring-primary-300 h-4 w-4 rounded border border-gray-300 bg-gray-50 "
 													required=""
+													onChange={() => setRemeber(true)}
 												/>
 											</div>
 											<div className="ml-3 text-sm">
