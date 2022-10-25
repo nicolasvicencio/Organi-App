@@ -17,15 +17,15 @@ export default function First() {
 	const handleChangeEmail = async (e) => {
 		e.preventDefault()
 		if (newEmail === userData.email) return setError('El email ingresado es igual al anterior')
-		const { data, error } = await supabase.auth.updateUser({email: newEmail})
-		if (error){
+		const { data, error } = await supabase.auth.updateUser({ email: newEmail })
+		if (error) {
 			setError(error.message)
-			return 
-		} 
-		if (data){
+			return
+		}
+		if (data) {
 			setIsSend(true)
-			return 
-		} 
+			return
+		}
 	}
 
 	return (
@@ -69,7 +69,10 @@ export default function First() {
 												required=""
 											/>
 										</div>
-										<button className="button" onClick={e => handleChangeEmail(e)}>Cambiar</button>
+										<div className="flex justify-between pt-3">
+												<button className="button py-2" onClick={e => handleChangeEmail(e)}>Cambiar</button>
+												<button className="button py-2 bg-zinc-300 hover:bg-zinc-500 text-black" onClick={() => router.back() }>Volver</button>
+										</div>
 									</form>
 								</>
 							)}
