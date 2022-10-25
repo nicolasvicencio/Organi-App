@@ -6,8 +6,6 @@ import { useRouter } from 'next/router';
 import EditTaskItem from './EditTaskItem';
 
 export default function TaskItem({ data }) {
-	if (!data) return <Spinner />
-	const priority = data.priority ? "★".repeat(data.priority).padEnd(3, "☆") : null;
 	const [isEdit, setIsEdit] = useState(false)
 
 	const handleDelete = async () => {
@@ -20,7 +18,9 @@ export default function TaskItem({ data }) {
 
 	}
 
-	if (isEdit) return <EditTaskItem data={data} setIsEdit={setIsEdit}/>
+	if (!data) return <Spinner />
+	const priority = data.priority ? "★".repeat(data.priority).padEnd(3, "☆") : null;
+	if (isEdit) return <EditTaskItem data={data} setIsEdit={setIsEdit} />
 
 	return (
 		<div className='cardBg px-6 py-3 rounded-md drop-shadow-sm shadow-2xl bg-gray-100 flex flex-col justify-between '>

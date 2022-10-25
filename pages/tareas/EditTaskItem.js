@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import { supabase } from '../../supabase/connection'
+import Error from 'next/error'
+import Spinner from '../../components/Spinner/Spinner'
 
-export default function EditTaskItem({ data , setIsEdit}) {
-	const [name, setName] = useState(data.name)
-	const [priority, setPriority] = useState(data.priority)
-	const [description, setDescription] = useState(data.description)
+export default function EditTaskItem({ data, setIsEdit }) {
+
+	const [name, setName] = useState(data ? data.name : null)
+	const [priority, setPriority] = useState(data ? data.priority : null)
+	const [description, setDescription] = useState(data ? data.description : null)
 	const [error, setError] = useState(null)
 
+	if (!data) return <Spinner />
 
 	const handleUpdate = async () => {
 		console.log(data)
