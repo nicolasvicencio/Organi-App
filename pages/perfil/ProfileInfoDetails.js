@@ -44,7 +44,7 @@ export default function ProfileInfoDetails() {
           <div className="profileContainer">
             <p className="profileLabel">Redes</p>
             <p className="profileData flex gap-2">
-              {!userData.ig_url || userData.link_url || userData.gh_url ? 'Sin redes registradas' : null}
+              {!userData.ig_url || !userData.link_url || !userData.gh_url ? 'Sin redes registradas' : null}
               {userData.ig_url ? <a
                 href={userData.ig_url}
                 target="_blamk"
